@@ -5,32 +5,19 @@ get '/' do
   # Visita app/views/index.erb
 end
 
-
-post '/abuelita' do
-  user_input = params[:user_input]
-
-  grito = mayus?(user_input)
-  cuenta = 0
-  while user_input != "Abuelita te quiero, pero tengo que irme" && cuenta != 1
-		if user_input == ""
-			redirect to("/?abuelita=No te quedes ahi parado")
-			cuenta += 1
-		elsif grito == true
-			# puts "NO, NO DESDE 1983"
-			redirect to("/?abuelita=NO, NO DESDE 1983")
-			cuenta = 0
-		else
-			# puts "HUH?! NO TE ESCUCHO, HIJO!"
-			redirect to("/?abuelita=HUH?! NO TE ESCUCHO, HIJO!")
-			cuenta = 0
-		end
-		redirect to('/')
-
-		# palabra = gets.chomp
-		grito = mayus?(user_input)
+post '/abue' do
+	user_input = params[:user_input]
+	grito = mayus?(user_input)
+	puts grito
+	if user_input == ""
+		"No te quedes ah&iacute; parado"
+	elsif grito == true
+		"NO, NO DESDE 1983"
+	elsif user_input == "abuelita te quiero, pero tengo que irme"
+		"BYE"
+	else
+		"HUH?! NO TE ESCUCHO, HIJO!"
 	end
-
-  redirect to("/?abuelita=Adios mijo")
 end
 
 def mayus?(palabra)
